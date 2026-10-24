@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "author": "Smart Home ESP32",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 163.2, "left": 264.04, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir", "top": -92, "left": -141.78, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -86.1,
+      "left": 820.2,
+      "attrs": { "temperature": "12.9", "humidity": "60" }
+    },
+    {
+      "type": "wokwi-gas-sensor",
+      "id": "gas",
+      "top": -112.5,
+      "left": 26.2,
+      "attrs": {"ppm": "400","threshold": "4.4"}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr",
+      "top": 118.4,
+      "left": -210.4,
+      "attrs": { "lux": "500" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot", "top": 248.3, "left": -221, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "ledMotion",
+      "top": 44.4,
+      "left": 656.6,
+      "attrs": { "color": "green", "label": "Motion" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledTemp",
+      "top": 150,
+      "left": 656.6,
+      "attrs": { "color": "red", "label": "Temperature" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledLight",
+      "top": 260,
+      "left": 660,
+      "attrs": { "color": "yellow", "label": "Light PWM" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 71.15,
+      "left": 729.6,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-resistor", "id": "r2", "top": 180, "left": 580, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 290, "left": 580, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 400, "left": 560, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led lrd",
+      "top": 342,
+      "left": 666.2,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 368.75,
+      "left": 595.2,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "pir:VCC", "esp:3V3", "red", [] ],
+    [ "pir:GND", "esp:GND.1", "black", [ "h239.74", "v316.8" ] ],
+    [ "pir:OUT", "esp:4", "green", [ "h499.06", "v307.2" ] ],
+    [ "dht:VCC", "esp:3V3", "red", [] ],
+    [ "dht:SDA", "esp:15", "green", [ "h0.1", "v294" ] ],
+    [ "gas:VCC", "esp:5V", "red", [ "h9.6", "v431.1" ] ],
+    [ "gas:GND", "esp:GND.1", "black", [ "h76.8", "v392.8" ] ],
+    [ "gas:DO", "esp:35", "orange", [] ],
+    [ "ldr:VCC", "esp:3V3", "red", [ "h259.2", "v57.6" ] ],
+    [ "ldr:GND", "esp:GND.1", "black", [ "v66.8", "h192", "v105.6" ] ],
+    [ "ldr:AO", "esp:32", "green", [ "v85.7", "h307.05" ] ],
+    [ "pot:VCC", "esp:3V3", "red", [ "v-124.8", "h440.65" ] ],
+    [ "pot:GND", "esp:GND.1", "black", [ "v-19.2", "h307.2", "v28.8" ] ],
+    [ "pot:SIG", "esp:33", "green", [ "v57.6", "h383.6", "v-124.8" ] ],
+    [ "esp:2", "r1:1", "green", [ "h374.4", "v-259.2" ] ],
+    [ "r1:2", "ledMotion:A", "green", [ "v-19.2", "h-103.4" ] ],
+    [ "ledMotion:C", "esp:GND.1", "black", [ "h-258.8", "v230.4" ] ],
+    [ "esp:27", "r2:1", "red", [ "h320.95" ] ],
+    [ "r2:2", "ledTemp:A", "red", [] ],
+    [ "esp:25", "r3:1", "yellow", [ "h311.35" ] ],
+    [ "r3:2", "ledLight:A", "yellow", [] ],
+    [ "ledLight:C", "esp:GND.1", "black", [ "v14.8", "h-406.35" ] ],
+    [ "esp:26", "buzzer:2", "purple", [ "h-14.61", "v253.2", "h357" ] ],
+    [ "buzzer:1", "esp:GND.1", "black", [ "h-279.8", "v-167.2" ] ],
+    [ "r4:2", "led lrd:A", "green", [ "h37.2", "v9.6" ] ],
+    [ "r4:1", "esp:14", "green", [ "h-201.6", "v-67.2" ] ],
+    [ "led lrd:C", "esp:GND.1", "black", [ "h-374", "v-67.2" ] ],
+    [ "ledTemp:C", "esp:GND.2", "black", [ "h-324.24" ] ],
+    [ "dht:GND", "esp:GND.2", "black", [ "v105.6", "h-513.24" ] ],
+    [ "gas:AOUT", "esp:35", "green", [ "h144", "v307.2", "v28.8" ] ]
+  ],
+  "dependencies": {}
+}
